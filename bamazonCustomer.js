@@ -25,7 +25,7 @@ function queryAllProducts() {
 
         console.log("")
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].id + " | " + res[i].productName + " | " + res[i].price + " | ");
+            console.log(res[i].id + " | " + res[i].productName + " | $" + res[i].price + " | ");
         }
         console.log("-----------------------------------");
 
@@ -52,7 +52,7 @@ function buyingChoice() {
 
             var query = "SELECT id,productName,price,stockQuantity FROM products WHERE ?";
             connection.query(query, { id: answer.select }, function (err, res) {
-                console.log("Item: " + res[0].productName + " || Price: " + res[0].price);
+                console.log("Item: " + res[0].productName + " || Price: $" + res[0].price);
 
                 howManyUnits(res[0]);
 
@@ -83,20 +83,23 @@ function howManyUnits(product) {
             else {
                 console.log("Item available");
                 var upadatedQuantity= (product.stockQuantity - answer.units)
-                updateItems(upadatedQuantity, product.id)
+                var totalPrice = (product.price * answer.units)
+                updateItems(upadatedQuantity, product.id, totalPrice)
+                
+                
             }
     
         });
     
 }
-// Updates item quantity
-function updateItems(quantity, itemId) {
+// Updates item quantity and gives total price of purchase
+function updateItems(quantity, itemId, total) {
     var query = "UPDATE products SET ? WHERE ?";
     var value = [{ stockQuantity: quantity },{ id: itemId }]
     connection.query(query, value, function (err, res) {
         console.log("Your order is updated")
-      
-
+        console.log("Your total price is $" + total)
+        
     });
 }
 
