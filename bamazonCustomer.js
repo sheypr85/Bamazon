@@ -50,8 +50,7 @@ function buyingChoice() {
         .then(function (answer) {
             console.log(answer.select);
 
-            var query = "SELECT id,productName,price FROM products WHERE ?";
-            
+            var query = "SELECT id,productName,price,stockQuantity FROM products WHERE ?";
             connection.query(query, { id: answer.select }, function (err, res) {
                 console.log("Item: " + res[0].productName + " || Price: " + res[0].price);
 
@@ -62,7 +61,7 @@ function buyingChoice() {
         });
 
 }
-
+// Ask customer to select how many items they want to buy
 function howManyUnits(product) {
     inquirer
         .prompt({
@@ -77,7 +76,27 @@ function howManyUnits(product) {
             }
         })
         .then(function (answer) {
-            console.log(answer.units);
-        })
-
+    
+            if (answer.units > product.stockQuantity) {
+                console.log("Not Enough inventory")
+            }
+            else {
+                console.log("Item available");
+                var upadatedQuantity= (product.stockQuantity - answer.units)
+                updateItems(upadatedQuantity, product.id)
+            }
+    
+        });
+    
 }
+// Updates item quantity
+function updateItems(quantity, itemId) {
+    var query = "UPDATE products SET ? WHERE ?";
+    var value = [{ stockQuantity: quantity },{ id: itemId }]
+    connection.query(query, value, function (err, res) {
+        console.log("Your order is updated")
+      
+
+    });
+}
+
