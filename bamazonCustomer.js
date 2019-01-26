@@ -21,9 +21,9 @@ connection.connect(function (err) {
 
 
 function queryAllProducts() {
-    connection.query("SELECT * FROM products", function (err, res) {
+    var query = "SELECT * FROM products";
+    connection.query(query, function (err, res) {
 
-        console.log("")
         for (var i = 0; i < res.length; i++) {
             console.log(res[i].id + " | " + res[i].productName + " | $" + res[i].price + " | ");
         }
@@ -48,8 +48,7 @@ function buyingChoice() {
             }
         })
         .then(function (answer) {
-            console.log(answer.select);
-
+            
             var query = "SELECT id,productName,price,stockQuantity FROM products WHERE ?";
             connection.query(query, { id: answer.select }, function (err, res) {
                 console.log("Item: " + res[0].productName + " || Price: $" + res[0].price);
@@ -99,7 +98,7 @@ function updateItems(quantity, itemId, total) {
     connection.query(query, value, function (err, res) {
         console.log("Your order is updated")
         console.log("Your total price is $" + total)
-        
+        connection.end()
     });
 }
 
