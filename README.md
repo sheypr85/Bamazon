@@ -38,8 +38,8 @@ This is a node application to:
 1. Select one of the following options with the arrows.
     * "View Products for Sale" - lists all products in inventory.
     * "View Low Inventory" - Gives you the products with less than 5 items in the inventory.
-    * Add to Inventory" - Allows you to add additional quantity of products.
-    * Add New Product" - Allos you to add additional Products to inventory.
+    * "Add to Inventory" - Allows you to add additional quantity of products.
+    * "Add New Product" - Allos you to add additional Products to inventory.
 
 
 ## Bamazon Customer *DEMO*
