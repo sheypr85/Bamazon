@@ -168,11 +168,23 @@ function addNewProduct() {
                     }
                     return false;
                 }
+            },
+            {
+                name: "dept",
+                type: "input",
+                message: "What is the item's department",
+                validate: function (value) {
+                    if (value === "") {
+                        return false;
+                    }
+                    return true ;
+                }
             }
         ])
         .then(function(answer){
             var query = "INSERT INTO products SET ?";
-            connection.query(query, { productName: answer.name, price: answer.price, stockQuantity: answer.qty },
+            connection.query(query, { productName: answer.name, price: answer.price, 
+                stockQuantity: answer.qty, departmentName: answer.dept },
                 function(err, res){
                     console.log(res.affectedRows + " product added!")
                     addingAnother()
