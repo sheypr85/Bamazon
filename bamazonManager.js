@@ -36,6 +36,7 @@ function runSearch() {
             switch (answer.action) {
                 case "View Products for Sale":
                     productSearch();
+                    connection.end();
                     break;
 
                 case "View Low Inventory":
@@ -200,8 +201,8 @@ function addNewProduct() {
              type: "input",
              message: "Do you want to add another product? Y/N ",
              validate: function(value) {
-                 var lower = (value.toLowerCase())
-                 if (((lower) == "y" ) || ((lower) =="n" )){
+                 var lower = value.toLowerCase();
+                 if (    (lower == "y" ) || (lower =="n" )  ){
 
                     return true;
                 } 
@@ -209,7 +210,7 @@ function addNewProduct() {
              }
          })
          .then(function(answer){
-             if (answer == "y"){
+             if (answer.another == "y"){
                  addNewProduct()
              } else {
                 connection.end()
