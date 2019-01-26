@@ -43,8 +43,8 @@ This is a node application to:
 
 
 ## Bamazon Customer *DEMO*
-
-
+** CLick for Video! Don't forget to adjust resolution!**
+[![](https://i.vimeocdn.com/video/754836432.jpg)](https://player.vimeo.com/video/313506273)
 
 ## Bamazon Manager *DEMO*
 
