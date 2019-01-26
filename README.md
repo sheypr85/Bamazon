@@ -47,7 +47,7 @@ This is a node application to:
 [![](https://i.vimeocdn.com/video/754836432.jpg)](https://player.vimeo.com/video/313506273)
 
 ## Bamazon Manager *DEMO*
-
+[![](https://i.vimeocdn.com/video/754836485.jpg)](https://player.vimeo.com/video/313506300)
 
 
 
