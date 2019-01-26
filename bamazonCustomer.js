@@ -48,7 +48,7 @@ function buyingChoice() {
             }
         })
         .then(function (answer) {
-            
+
             var query = "SELECT id,productName,price,stockQuantity FROM products WHERE ?";
             connection.query(query, { id: answer.select }, function (err, res) {
                 console.log("Item: " + res[0].productName + " || Price: $" + res[0].price);
@@ -67,12 +67,7 @@ function howManyUnits(product) {
             name: "units",
             type: "input",
             message: "How many " + product.productName + " do you need to buy? ",
-            validate: function (value) {
-                if (isNaN(value) === false) {
-                    return true;
-                }
-                return false
-            }
+            
         })
         .then(function (answer) {
     
@@ -81,9 +76,9 @@ function howManyUnits(product) {
             }
             else {
                 console.log("Item available");
-                var upadatedQuantity= (product.stockQuantity - answer.units)
+                var updatedQuantity= (product.stockQuantity - answer.units)
                 var totalPrice = (product.price * answer.units)
-                updateItems(upadatedQuantity, product.id, totalPrice)
+                updateItems(updatedQuantity, product.id, totalPrice)
                 
                 
             }
